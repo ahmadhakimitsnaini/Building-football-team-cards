@@ -4,8 +4,6 @@ const worldCupYear = document.getElementById("year");
 const headCoach = document.getElementById("head-coach");
 const playerCards = document.getElementById("player-cards");
 const playersDropdownList = document.getElementById("players");
-
-// Mendeklarasikan object football team
 const myFavoriteFootballTeam = {
   team: "Argentina",
   sport: "Football",
@@ -177,8 +175,22 @@ Object.freeze(myFavoriteFootballTeam);
 const { sport, team, year, players } = myFavoriteFootballTeam;
 const { coachName } = myFavoriteFootballTeam.headCoach;
 
-// Menampilkan data pada UI
 typeOfSport.textContent = sport;
 teamName.textContent = team;
 worldCupYear.textContent = year;
 headCoach.textContent = coachName;
+
+const setPlayerCards = (arr = players) => {
+  playerCards.innerHTML += arr.map(
+    ({ name, position, number, isCaptain, nickname }) => {
+      `
+        <div class="player-card">
+          <h2>${isCaptain ? "(Captain)" : ""} ${name}</h2>
+          <p>Position: ${position}</p>
+          <p>Number: ${number}</p>
+          <p>Nickname: </p>
+        </div>
+      `;
+    }
+  );
+};
